@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import format from "date-fns/format";
 import { useMutation, useQuery } from "@apollo/client";
 import { Button, Label, Select, TextInput } from "flowbite-react";
-import { FiPlus } from "react-icons/fi";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import { Stack, TextField } from "@mui/material";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
@@ -14,6 +12,7 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import {
 	GET_DISTRITO_BY_PROVINCE,
 	GET_FAIXAS_ETARIAS,
+	GET_INQUERITOS,
 	GET_INTERVENCOES,
 	GET_PROVINCIAS,
 	GET_SECTORES_CLINICOS,
@@ -24,7 +23,6 @@ import {
 import { ADD_SONDAGEM } from "../graphql/mutations";
 
 const AddInquerito = () => {
-	const [showModal, setShowModal] = useState(false);
 	const [provincias, setProvincias] = useState([]);
 	const [provinciaId, setProvinciaId] = useState(0);
 	const [distritos, setDistritos] = useState([]);
@@ -108,6 +106,7 @@ const AddInquerito = () => {
 			servicoPrevencaoId: servicoPrevencaoId,
 			servicoCuidadoTratamentoId: servicoCuidadosId,
 		},
+		refetchQueries: [{ query: GET_INQUERITOS }],
 	});
 
 	const handleProvincias = (cod) => {

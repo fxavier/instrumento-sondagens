@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
 
-export const ADD_SONDAGEM = gql`
+const ADD_SONDAGEM = gql`
 	mutation createInquerito(
 		$dataInquerito: Date!
 		$provinciaId: Int!
@@ -31,3 +31,20 @@ export const ADD_SONDAGEM = gql`
 		}
 	}
 `;
+
+const LOGIN = gql`
+	mutation loginUser($email: String!, $password: String!) {
+		loginUser(email: $email, password: $password) {
+			user {
+				id
+				name
+				email
+				password
+			}
+			access
+			refresh
+		}
+	}
+`;
+
+export { ADD_SONDAGEM, LOGIN };

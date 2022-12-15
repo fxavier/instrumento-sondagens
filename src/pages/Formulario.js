@@ -6,7 +6,7 @@ import {
 	Select,
 	TextField,
 } from "@mui/material";
-import { Formik } from "formik";
+import { Formik, Form } from "formik";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import HeaderForm from "../components/HeaderForm";
@@ -14,7 +14,7 @@ import { useState } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_PROVINCIAS } from "../graphql/queries";
 
-const Form = () => {
+const Formulario = () => {
 	const isNonMobile = useMediaQuery("(min-width:600px)");
 	const [provincias, setProvincias] = useState([]);
 
@@ -29,8 +29,11 @@ const Form = () => {
 			<HeaderForm title="INTRODUZIR DADOS" subtitle="Introduzir novos dados" />
 
 			<Formik
-				onSubmit={handleFormSubmit}
 				initialValues={initialValues}
+				onSubmit={(values) => {
+					alert(JSON.stringify(values, null, 2));
+					console.log(values);
+				}}
 				validationSchema={checkoutSchema}
 			>
 				{({
@@ -41,7 +44,7 @@ const Form = () => {
 					handleChange,
 					handleSubmit,
 				}) => (
-					<form onSubmit={handleSubmit}>
+					<Form>
 						<Box
 							display="grid"
 							gap="30px"
@@ -60,7 +63,7 @@ const Form = () => {
 								value={values.firstName}
 								name="firstName"
 								error={!!touched.firstName && !!errors.firstName}
-								helperText={touched.firstName && errors.firstName}
+								helpertext={touched.firstName && errors.firstName}
 								sx={{ gridColumn: "span 4" }}
 							/>
 
@@ -76,7 +79,7 @@ const Form = () => {
 								value={values.provincia}
 								name="provincia"
 								error={!!touched.provincia && !!errors.provincia}
-								helperText={touched.provincia && errors.provincia}
+								helpertext={touched.provincia && errors.provincia}
 								sx={{ gridColumn: "span 2" }}
 							>
 								{!loading && !error
@@ -98,7 +101,7 @@ const Form = () => {
 								value={values.email}
 								name="email"
 								error={!!touched.email && !!errors.email}
-								helperText={touched.email && errors.email}
+								helpertext={touched.email && errors.email}
 								sx={{ gridColumn: "span 2" }}
 							/>
 							<TextField
@@ -111,7 +114,7 @@ const Form = () => {
 								value={values.contact}
 								name="contact"
 								error={!!touched.contact && !!errors.contact}
-								helperText={touched.contact && errors.contact}
+								helpertext={touched.contact && errors.contact}
 								sx={{ gridColumn: "span 4" }}
 							/>
 							<TextField
@@ -124,7 +127,7 @@ const Form = () => {
 								value={values.address1}
 								name="address1"
 								error={!!touched.address1 && !!errors.address1}
-								helperText={touched.address1 && errors.address1}
+								helpertext={touched.address1 && errors.address1}
 								sx={{ gridColumn: "span 4" }}
 							/>
 							<TextField
@@ -137,7 +140,7 @@ const Form = () => {
 								value={values.address2}
 								name="address2"
 								error={!!touched.address2 && !!errors.address2}
-								helperText={touched.address2 && errors.address2}
+								helpertext={touched.address2 && errors.address2}
 								sx={{ gridColumn: "span 4" }}
 							/>
 						</Box>
@@ -146,7 +149,7 @@ const Form = () => {
 								Create New User
 							</Button>
 						</Box>
-					</form>
+					</Form>
 				)}
 			</Formik>
 		</Box>
@@ -178,4 +181,4 @@ const initialValues = {
 	provincia: "",
 };
 
-export default Form;
+export default Formulario;
