@@ -16,7 +16,7 @@ import {
 import LockIcon from "@mui/icons-material/Lock";
 import { useMutation } from "@apollo/client";
 import Error from "../shared/Error";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Login = ({ classes, setNewUser }) => {
 	const paperStyle = {
@@ -53,7 +53,7 @@ const Login = ({ classes, setNewUser }) => {
 
 		// client.writeData({ data: { isLoggedIn: true } });
 		// navigate(from, "/dashboard");
-		navigate("/");
+		navigate("/dashboard");
 		//console.log("Token:", localStorage.getItem("authToken"));
 	};
 
