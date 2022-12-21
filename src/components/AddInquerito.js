@@ -21,6 +21,7 @@ import {
 	GET_UNIDADES_SANITARIAS_BY_DISTRICT,
 } from "../graphql/queries";
 import { ADD_SONDAGEM } from "../graphql/mutations";
+import { useNavigate } from "react-router-dom";
 
 const AddInquerito = () => {
 	const [provincias, setProvincias] = useState([]);
@@ -109,6 +110,8 @@ const AddInquerito = () => {
 		refetchQueries: [{ query: GET_INQUERITOS }],
 	});
 
+	const navigate = useNavigate();
+
 	const handleProvincias = (cod) => {
 		const provinceData = data.provincias.filter((item) => item.id === cod);
 		setProvincias(provinceData);
@@ -189,15 +192,15 @@ const AddInquerito = () => {
 	};
 
 	const clearFields = () => {
-		setProvincias("");
-		setDistritos("");
-		setUnidades("");
+		setProvincias([]);
+		setDistritos([]);
+		setUnidades([]);
 		setNomeEntrevistador("");
-		setFaixasEtarias("");
-		setRazoes("");
-		setSectorClinico("");
-		setServicosCuidaddos("");
-		setServicosPrevencaos("");
+		setFaixasEtarias([]);
+		setRazoes([]);
+		setSectorClinico([]);
+		setServicosCuidaddos([]);
+		setServicosPrevencaos([]);
 	};
 
 	const onSubmit = (e) => {
@@ -214,6 +217,8 @@ const AddInquerito = () => {
 			servicoPrevencaoId,
 			servicoCuidadosId
 		);
+		clearFields();
+		navigate("/inquerito");
 	};
 
 	return (
@@ -298,7 +303,10 @@ const AddInquerito = () => {
 						<div className="grid grid-cols-2 gap-4">
 							<div id="razao">
 								<div className="mb-2 block">
-									<Label htmlFor="razao" value="Razoes" />
+									<Label
+										htmlFor="razao"
+										value="Razões de procura dos serviços de saúde (Intervenções)"
+									/>
 								</div>
 								<Select
 									id="razao"
@@ -336,13 +344,16 @@ const AddInquerito = () => {
 						<div className="grid grid-cols-2 gap-4"></div>
 						<div id="sectorClinico">
 							<div className="mb-2 block">
-								<Label htmlFor="sectorClinico" value="SectorClinico" />
+								<Label
+									htmlFor="sectorClinico"
+									value="Em que sector foi atendido?"
+								/>
 							</div>
 							<Select
 								id="sectorClinico"
 								onChange={(e) => handleSectorClinicos(e.target.value)}
 							>
-								<option value="">Selecione SectorClinico</option>
+								<option value="">Selecione Sector Clinico</option>
 								{!sectorLoading && !sectorError
 									? sectorData.sectoresClinicos.map((sectorClinico) => (
 											<option key={sectorClinico.id} value={sectorClinico.id}>
@@ -357,7 +368,7 @@ const AddInquerito = () => {
 							<div>
 								<div id="data">
 									<div className="mb-3 block">
-										<Label htmlFor="" />
+										<Label htmlFor="Data" />
 									</div>
 									<LocalizationProvider dateAdapter={AdapterDateFns}>
 										<Stack spacing={3}>
@@ -381,7 +392,10 @@ const AddInquerito = () => {
 
 						<div id="servicoPrevencao">
 							<div className="mb-2 block">
-								<Label htmlFor="servicoPrevencao" value="ServicoPrevencao" />
+								<Label
+									htmlFor="servicoPrevencao"
+									value="Que os serviços/pacotes de prevenção que recebeu?"
+								/>
 							</div>
 							<Select
 								id="servicoPrevencao"
@@ -404,7 +418,10 @@ const AddInquerito = () => {
 
 						<div id="servicoCuidados">
 							<div className="mb-2 block">
-								<Label htmlFor="servicoCuidados" value="ServicoCuidados" />
+								<Label
+									htmlFor="servicoCuidados"
+									value="Que serviços de Cuidados e Tratamento recebeu?"
+								/>
 							</div>
 							<Select
 								id="servicoCuidados"
