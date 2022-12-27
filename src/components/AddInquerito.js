@@ -24,20 +24,28 @@ import { ADD_SONDAGEM } from "../graphql/mutations";
 import { useNavigate } from "react-router-dom";
 
 const AddInquerito = () => {
+	// eslint-disable-next-line
 	const [provincias, setProvincias] = useState([]);
 	const [provinciaId, setProvinciaId] = useState(0);
+	// eslint-disable-next-line
 	const [distritos, setDistritos] = useState([]);
 	const [distritoId, setDistritoId] = useState(0);
+	// eslint-disable-next-line
 	const [unidades, setUnidades] = useState([]);
 	const [usId, setUsId] = useState(0);
+	// eslint-disable-next-line
 	const [razoes, setRazoes] = useState([]);
 	const [razaoId, setRazaoId] = useState(0);
+	// eslint-disable-next-line
 	const [faixasEtarias, setFaixasEtarias] = useState([]);
 	const [faixaEtariaId, setFaixaEtariaId] = useState(0);
+	// eslint-disable-next-line
 	const [sectorClinico, setSectorClinico] = useState([]);
 	const [sectorId, setSectorId] = useState(0);
+	// eslint-disable-next-line
 	const [servicosPrevencaos, setServicosPrevencaos] = useState([]);
 	const [servicoPrevencaoId, setSevicoPrevencaoId] = useState(0);
+	// eslint-disable-next-line
 	const [sevicosCuidaddos, setServicosCuidaddos] = useState([]);
 	const [servicoCuidadosId, setServicosCuidaddosId] = useState(0);
 	const [dataSondagem, setDataSondagem] = useState(

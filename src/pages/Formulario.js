@@ -1,11 +1,4 @@
-import {
-	Box,
-	Button,
-	InputLabel,
-	MenuItem,
-	Select,
-	TextField,
-} from "@mui/material";
+import { Box, Button, MenuItem, Select, TextField } from "@mui/material";
 import { Formik, Form } from "formik";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -16,13 +9,14 @@ import { GET_PROVINCIAS } from "../graphql/queries";
 
 const Formulario = () => {
 	const isNonMobile = useMediaQuery("(min-width:600px)");
+	// eslint-disable-next-line
 	const [provincias, setProvincias] = useState([]);
 
 	const { loading, error, data } = useQuery(GET_PROVINCIAS);
 
-	const handleFormSubmit = (values) => {
+	/* const handleFormSubmit = (values) => {
 		console.log(values);
-	};
+	}; */
 
 	return (
 		<Box m="20px">

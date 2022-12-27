@@ -1,21 +1,10 @@
 import React, { useState } from "react";
 
 import { LOGIN } from "../graphql/mutations";
-import {
-	Avatar,
-	Box,
-	Button,
-	FormControl,
-	Grid,
-	Input,
-	InputLabel,
-	Paper,
-	TextField,
-	Typography,
-} from "@mui/material";
+import { Avatar, Box, Button, Grid, Paper, TextField } from "@mui/material";
 import LockIcon from "@mui/icons-material/Lock";
 import { useMutation } from "@apollo/client";
-import Error from "../shared/Error";
+
 import { useLocation, useNavigate } from "react-router-dom";
 
 const Login = ({ classes, setNewUser }) => {
@@ -32,10 +21,14 @@ const Login = ({ classes, setNewUser }) => {
 	const [password, setPassword] = useState("");
 
 	const navigate = useNavigate();
+	// eslint-disable-next-line
 	const location = useLocation();
+	// eslint-disable-next-line
 	const from = "/login";
+	// eslint-disable-next-line
 	const isLoggedIn = false;
 
+	// eslint-disable-next-line
 	const [login, { loading, data, error }] = useMutation(LOGIN, {
 		variables: {
 			email: email,
@@ -46,15 +39,10 @@ const Login = ({ classes, setNewUser }) => {
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		const res = await login(email, password);
-		//console.log(res.data.loginUser.access);
 
-		// const res = await tokenAuth();
 		localStorage.setItem("authToken", res.data.loginUser.access);
 
-		// client.writeData({ data: { isLoggedIn: true } });
-		// navigate(from, "/dashboard");
 		navigate("/dashboard");
-		//console.log("Token:", localStorage.getItem("authToken"));
 	};
 
 	return (
